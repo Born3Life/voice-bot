@@ -9,7 +9,9 @@ const app = express();
 app.use(express.json());
 
 // webhook-режим
-const bot = new TelegramBot(config.TELEGRAM_TOKEN);
+const bot = new TelegramBot(config.TELEGRAM_TOKEN, {
+  webHook: true
+});
 
 // память
 const userSettings = {};
@@ -85,7 +87,7 @@ bot.on('message', async (msg) => {
 
   try {
 
-const style = userSettings[chatId]?.style || "neutral";
+
 
     // ======================
     // 1. AI ПЕРЕПИСЫВАЕТ ТЕКСТ
@@ -149,7 +151,9 @@ bot.onText(/\/pay/, (msg) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.post(`/bot${config.TELEGRAM_TOKEN}`, (req, res) => {
+app.post("/", (req, res) => {
+  console.log("WEBHOOK HIT");
+
   bot.processUpdate(req.body);
   res.sendStatus(200);
 });
