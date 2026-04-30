@@ -1,0 +1,5 @@
+module.exports = {
+  TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN,
+  ELEVENLABS_API_KEY: process.env.ELEVENLABS_API_KEY,
+  DEFAULT_VOICE: "EXAVITQu4vr4xnSDxMaL"
+};
